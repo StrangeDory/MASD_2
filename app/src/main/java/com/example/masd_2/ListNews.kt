@@ -2,6 +2,7 @@ package com.example.masd_2
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,27 +34,33 @@ class ListNews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_news)
 
-        mService = Common.newsService
-        dialog = SpotsDialog.Builder().setContext(this).build()
-        val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.swipe_to_refresh)
-        swipeRefresh.setOnRefreshListener {
-            loadNews(source, true)
-        }
-
-        val dialogLayout = findViewById<DiagonalLayout>(R.id.diagonalLayout)
-        dialogLayout.setOnClickListener() {
-
-        }
-
-        val recyclerView = findViewById<RecyclerView>(R.id.list_news)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        if (intent != null) {
-            source = intent.getStringExtra("source")!!
-            if (!source.isEmpty()) {
-                loadNews(source, false)
+        try {
+            mService = Common.newsService
+            dialog = SpotsDialog.Builder().setContext(this).build()
+            val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.swipe_to_refresh)
+            swipeRefresh.setOnRefreshListener {
+                loadNews(source, true)
             }
+
+            val dialogLayout = findViewById<DiagonalLayout>(R.id.diagonalLayout)
+            dialogLayout.setOnClickListener() {
+                val detail = Intent(baseContext, NewsDetail::class.java)
+                detail.putExtra("webUrl", webHostUrl)
+                baseContext.startActivity(detail)
+            }
+
+            val recyclerView = findViewById<RecyclerView>(R.id.list_news)
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+
+            if (intent != null) {
+                source = intent.getStringExtra("source")!!
+                if (!source.isEmpty()) {
+                    loadNews(source, false)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("e", e.message.toString())
         }
     }
 
@@ -107,7 +114,7 @@ class ListNews : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<News>, t: Throwable) {
-                        TODO("Not yet implemented")
+                        Log.e("error", t.toString())
                     }
 
                 })
