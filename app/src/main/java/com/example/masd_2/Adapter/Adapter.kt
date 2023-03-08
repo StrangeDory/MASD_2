@@ -1,5 +1,6 @@
 package com.example.masd_2.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class Adapter(webSite: WebSite, contextMain: Context) : RecyclerView.Adapter<Ada
             itemView.setOnClickListener() {
                 val intent = Intent(context, ListNews::class.java)
                 intent.putExtra("source", webSite.sources!![position].id)
+                intent.putExtra("theme", webSite.sources!![position].name)
                 context.startActivity(intent)
             }
         }

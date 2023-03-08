@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" arent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#ED6D44</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">#ED7E5A</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MyAppBarLayoutTheme" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorControlHighlight">@color/controlAccent</item>
+    </style>
+</resources>

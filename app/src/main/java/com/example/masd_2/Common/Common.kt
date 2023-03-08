@@ -15,4 +15,10 @@ object Common {
             .append(source).append("&apiKey=").append(API_KEY).toString()
         return apiURL
     }
+
+    fun getSourceSearch(searchStr: String): String {
+        val apiURL = StringBuilder("https://newsapi.org/v2/sources?q=").append(searchStr)
+            .append("&apiKey=").append(API_KEY).toString()
+        return apiURL
+    }
 }
