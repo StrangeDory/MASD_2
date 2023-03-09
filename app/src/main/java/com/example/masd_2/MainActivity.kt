@@ -52,42 +52,6 @@ class MainActivity : AppCompatActivity() {
         loadWebSiteSource(false)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_search, menu)
-//        val search = menu!!.findItem(R.id.appSearchBar)
-//        val searchView = search.actionView as SearchView
-//        searchView.queryHint = "Search"
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                mService.getSourceSearch(Common.getSourceSearch(query!!))
-//                    .enqueue(object : retrofit2.Callback<WebSite> {
-//                        @SuppressLint("NotifyDataSetChanged")
-//                        override fun onResponse(call: Call<WebSite>, response: Response<WebSite>) {
-//                            val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
-//                            val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_source_news)
-//                            swipeRefresh.isRefreshing = true
-//                            adapter = Adapter(response.body()!!, baseContext)
-//                            adapter.notifyDataSetChanged()
-//                            recyclerView.adapter = adapter
-//                            swipeRefresh.isRefreshing = false
-//                        }
-//
-//                        override fun onFailure(call: Call<WebSite>, t: Throwable) {
-//                            TODO("Not yet implemented")
-//                        }
-//
-//
-//                    })
-//                return false
-//            }
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//
-//                return true
-//            }
-//        })
-//        return super.onCreateOptionsMenu(menu)
-//    }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun loadWebSiteSource(isRefresh: Boolean) {
         val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_source_news)
